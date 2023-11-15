@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+/**
+ * ShoppingPage class represents the web page where users can search for products.
+ */
 public class ShoppingPage {
 
     private final WebDriverWait wait;
@@ -18,7 +21,10 @@ public class ShoppingPage {
         this.wait = new WebDriverWait(driver, 10);
     }
 
-    // Method to check for search results
+    /**
+     * performs a search for given product on shopping page
+     * @param query The search query for the product
+     */
     public void searchForProduct(String query){
         //wait for 10 seconds unless the search loads and is clickable
         WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.id("searchval")));
@@ -27,22 +33,40 @@ public class ShoppingPage {
         searchBox.submit();
     }
 
+    /**
+     * Retrieves every item description on the page.
+     *
+     * @return A list containing all item descriptions on the page.
+     */
     public List<WebElement> getSearchResult(){
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
                 (By.xpath("//span[@data-testid='itemDescription']")));
     }
 
+    /**
+     * Retrieves the total number of pages in the pagination.
+     *
+     * @return A list representing the page numbers.
+     */
     public List<WebElement> getPageNumbers(){
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
                 ( By.xpath("//a[contains(@aria-label, 'last page')]")));
     }
 
-    public void getShopPage(String url){
+    /**
+     * Navigates to the shopping page and waits until the items on the page are loaded.
+     *
+     * @param url The address of the shopping page.
+     */
+    public void navigateToShopPage(String url){
         driver.get(url);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
                 (By.xpath("//span[@data-testid='itemDescription']")));
     }
 
+    /**
+     * Clicks the "Add to Cart" button on the shopping page.
+     */
     public void clickAddToCartButton(){
         List<WebElement> addButton = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
                 (By.xpath("//input[@value='Add to Cart']")));

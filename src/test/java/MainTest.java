@@ -10,6 +10,13 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+/**
+ * Test class for the main functionality of the web application.
+ * This class contains test cases related to searching for products,
+ * navigating through pages, adding items to the cart, and emptying the cart.
+ * It uses the ShoppingPage and CartPage classes to perform various test scenarios.
+ */
+
 public class MainTest {
 
     private WebDriver driver;
@@ -44,7 +51,7 @@ public class MainTest {
         // will jump to page 1 and then go to each page till the last page
         for (int currentPageNumber = 1; currentPageNumber <= totalPageNumber; currentPageNumber++){
         String newPageNumber = String.valueOf(currentPageNumber);
-        shopPage.getShopPage(shopUrl + newPageNumber); // as the page number changes it will modify the url
+        shopPage.navigateToShopPage(shopUrl + newPageNumber); // as the page number changes it will modify the url
 
         // verify that each item on the page has the given keyword
         List<WebElement> currentPageResult = shopPage.getSearchResult();
@@ -65,7 +72,7 @@ public class MainTest {
 
         // empty the cart
         shopPage.clickAddToCartButton(); // selects the last item on the list
-        cart.getCartPage(cartUrl);
+        cart.navigateToCartPage(cartUrl);
         cart.clickEmptyCartButton();
         cart.confirmEmptyCartDecision(); // handles the popup confirmation to empty the cart
 
