@@ -25,5 +25,11 @@ public class CartPage {
         emptyCartButton.click();
     }
 
+    public void confirmEmptyCartDecision(){
+        driver.findElement(By.cssSelector("footer button.btn")).click();
+
+    }
+
+
 
 }

@@ -25,6 +25,7 @@ public class MainTest {
     public void setUp(){
         driver = PageFactory.getDriver();
         shopPage = new ShoppingPage(driver);
+        cart = new CartPage(driver);
 
     }
 
@@ -34,9 +35,11 @@ public class MainTest {
         shopPage.searchForProduct(searchQuery);
 
     // get the total number of pages in the pagination
-    List<WebElement> pageNumbers = shopPage.getPageNumbers();
-    String pageNumberSize = pageNumbers.get(pageNumbers.size() - 1).getText();
-    int totalPageNumber = Integer.parseInt(pageNumberSize); // convert the total number of pages to integer for loop
+        List<WebElement> pageNumbers = shopPage.getPageNumbers();
+
+
+        String pageNumberSize = pageNumbers.get(pageNumbers.size() - 1).getText();
+        int totalPageNumber = Integer.parseInt(pageNumberSize); // convert the total number of pages to integer for loop
 
     // will jump to page 1 and then go to each page till the last page
         for (int currentPageNumber = 1; currentPageNumber <= totalPageNumber; currentPageNumber++){
@@ -59,7 +62,10 @@ public class MainTest {
 
         }
 
-        shopPage.clickAddToCartButton();
+        shopPage.clickAddToCartButton(); // selects the last item on the list
+        cart.getCartPage(cartUrl);
+        cart.clickEmptyCartButton();
+        cart.confirmEmptyCartDecision(); // handles the popup confirmation to empty the cart
     }
 
     @After
