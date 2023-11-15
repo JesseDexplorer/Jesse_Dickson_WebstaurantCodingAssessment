@@ -32,4 +32,22 @@ public class ShoppingPage {
                 (By.xpath("//span[@data-testid='itemDescription']")));
     }
 
+    public List<WebElement> getPageNumbers(){
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
+                ( By.xpath("//a[contains(@aria-label, 'last page')]")));
+    }
+
+    public void getShopPage(String url){
+        driver.get(url);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
+                (By.xpath("//span[@data-testid='itemDescription']")));
+    }
+
+    public void clickAddToCartButton(){
+        List<WebElement> addButton = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy
+                (By.xpath("//input[@value='Add to Cart']")));
+        addButton.get(addButton.size() - 1).click();
+    }
+
+
 }
