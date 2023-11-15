@@ -32,16 +32,16 @@ public class MainTest {
 
     @Test
     public void testCaseOne(){
+        // go to search bar and search for given query
         shopPage.searchForProduct(searchQuery);
 
-    // get the total number of pages in the pagination
+        // get the total number of pages in the pagination
         List<WebElement> pageNumbers = shopPage.getPageNumbers();
-
 
         String pageNumberSize = pageNumbers.get(pageNumbers.size() - 1).getText();
         int totalPageNumber = Integer.parseInt(pageNumberSize); // convert the total number of pages to integer for loop
 
-    // will jump to page 1 and then go to each page till the last page
+        // will jump to page 1 and then go to each page till the last page
         for (int currentPageNumber = 1; currentPageNumber <= totalPageNumber; currentPageNumber++){
         String newPageNumber = String.valueOf(currentPageNumber);
         shopPage.getShopPage(shopUrl + newPageNumber); // as the page number changes it will modify the url
@@ -62,10 +62,25 @@ public class MainTest {
 
         }
 
+
+        // empty the cart
         shopPage.clickAddToCartButton(); // selects the last item on the list
         cart.getCartPage(cartUrl);
         cart.clickEmptyCartButton();
         cart.confirmEmptyCartDecision(); // handles the popup confirmation to empty the cart
+
+
+        // verify that the cart was emptied
+        try{
+            Assert.assertTrue(cart.verifyCartIsEmpty().contains("Your cart is empty."));
+        }catch (AssertionError e){
+            String errorMessage = """
+
+                     Cart was not emptied
+
+                    """;
+            PageFactory.writeToAssertionErrorsFile(errorMessage, e); // writes to document assert error
+        }
     }
 
     @After

@@ -30,6 +30,12 @@ public class CartPage {
 
     }
 
+    public String verifyCartIsEmpty(){
+        WebElement emptyCartText = wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//p[@class='header-1']")));
+        return emptyCartText.getText();
+    }
+
 
 
 }
