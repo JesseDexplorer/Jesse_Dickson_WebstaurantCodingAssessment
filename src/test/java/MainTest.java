@@ -1,3 +1,4 @@
+import code.assement.CartPage;
 import code.assement.PageFactory;
 import code.assement.ShoppingPage;
 import org.junit.After;
@@ -14,6 +15,8 @@ public class MainTest {
     private WebDriver driver;
     protected String searchQuery = "stainless work table";
     private ShoppingPage shopPage;
+    private CartPage cart;
+
     protected String shopUrl = "https://www.webstaurantstore.com/search/stainless-work-table.html?page=";
     protected String cartUrl = "https://www.webstaurantstore.com/viewcart.cfm";
     protected String keyword = "Table";
