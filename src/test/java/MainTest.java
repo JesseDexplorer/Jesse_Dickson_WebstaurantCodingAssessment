@@ -55,6 +55,8 @@ public class MainTest {
         }
 
         }
+
+        shopPage.clickAddToCartButton();
     }
 
     @After
