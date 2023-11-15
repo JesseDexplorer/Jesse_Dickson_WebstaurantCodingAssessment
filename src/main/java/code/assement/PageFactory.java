@@ -9,10 +9,19 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * The PageFactory class manages the WebDriver instance and provides utility methods
+ * for logging and handling assertions.
+ *
+ * <p>This class ensure a single instance of the WebDriver
+ * throughout the test execution.</p>
+ */
 public class PageFactory {
     private static WebDriver driver;
 
 
+    // Method will initialize a new Chrome browser
     public static WebDriver getDriver(){
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
@@ -23,7 +32,7 @@ public class PageFactory {
         return driver;
     }
 
-    // create a log file for tracking Assertions
+    // Method will create a log file for tracking Assertions
     public static void writeToAssertionErrorsFile(String errorMessage, AssertionError e){
         try (FileWriter writer = new FileWriter("assertion_errors.txt", true)) {
             writer.write(getFormattedTimestamp() + "\n" + e + errorMessage); // adds the time stamp to the error message
@@ -40,7 +49,7 @@ public class PageFactory {
         return now.format(formatter);
     }
 
-
+    // Method will close and quit the browser instance
     public static void quitDriver(){
         if(driver != null){
             driver.quit();
