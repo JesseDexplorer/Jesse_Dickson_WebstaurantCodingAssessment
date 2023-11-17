@@ -18,7 +18,7 @@ public class ShoppingPage {
 
     public ShoppingPage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 30);
     }
 
     /**
