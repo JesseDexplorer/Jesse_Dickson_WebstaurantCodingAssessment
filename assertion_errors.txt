@@ -1,0 +1,14 @@
+11-16-2023 23:53
+java.lang.AssertionError
+This item:
+Metro CR2430DSS Drive-Thru Order Prep Station with Stainless Steel Shelving - 31 3/4" x 27 3/4" x 65 3/4"
+ does not have keyword Table
+page: Stainless Work Table - WebstaurantStore - Page 9
+
+11-17-2023 00:35
+java.lang.AssertionError
+This item:
+Metro CR2430DSS Drive-Thru Order Prep Station with Stainless Steel Shelving - 31 3/4" x 27 3/4" x 65 3/4"
+ does not have keyword Table
+page: Stainless Work Table - WebstaurantStore - Page 9
+
